@@ -20,7 +20,7 @@ export default function AppHeader({ user }: AppHeaderProps) {
   const [location] = useLocation();
 
   const navigation = [
-    { name: "Dashboard", href: "/", active: location === "/" },
+    { name: "Dashboard", href: "/dashboard", active: location === "/dashboard" },
   ];
 
   const handleLogout = () => {
@@ -32,7 +32,7 @@ export default function AppHeader({ user }: AppHeaderProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-4">
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href="/dashboard" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <Palette className="w-5 h-5 text-white" />
               </div>

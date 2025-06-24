@@ -34,7 +34,7 @@ export default function AuthPage() {
 
   // Redirect if already logged in
   if (user) {
-    setLocation("/");
+    setLocation("/dashboard");
     return null;
   }
 
@@ -50,13 +50,13 @@ export default function AuthPage() {
 
   const onLogin = async (data: LoginData) => {
     await loginMutation.mutateAsync(data);
-    setLocation("/");
+    setLocation("/dashboard");
   };
 
   const onRegister = async (data: RegisterData) => {
     const { confirmPassword, ...registerData } = data;
     await registerMutation.mutateAsync(registerData);
-    setLocation("/");
+    setLocation("/dashboard");
   };
 
   return (
