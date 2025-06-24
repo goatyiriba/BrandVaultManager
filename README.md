@@ -18,6 +18,10 @@ It uses Express with TypeScript for the backend and React for the frontend.
    ```
    The server runs on http://localhost:5000
 
+## Creating a new project
+
+Once logged in, navigate to `http://localhost:5000/projects/new` to start a new brand project.
+
 For a production build use:
 ```bash
 npm run build

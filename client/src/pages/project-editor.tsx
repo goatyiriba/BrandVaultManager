@@ -10,24 +10,11 @@ import { Loader2 } from "lucide-react";
 export default function ProjectEditor() {
   const { id } = useParams();
   const { user } = useAuth();
-  
-  const isNewProject = id === "new";
-  
+
   const { data: project, isLoading, error } = useQuery<ProjectWithDetails>({
     queryKey: ["/api/projects", id],
-    enabled: !!id && !isNewProject,
+    enabled: !!id,
   });
-
-  if (isNewProject) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        <AppHeader user={user} />
-        <div className="p-6 max-w-6xl mx-auto">
-          <BrandEditor />
-        </div>
-      </div>
-    );
-  }
 
   if (isLoading) {
     return (
