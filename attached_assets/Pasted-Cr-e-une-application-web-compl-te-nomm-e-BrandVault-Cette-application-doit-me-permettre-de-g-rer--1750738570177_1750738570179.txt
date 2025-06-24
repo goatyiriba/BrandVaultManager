@@ -1,0 +1,85 @@
+Crée une application web complète nommée "BrandVault". Cette application doit me permettre de gérer tout le branding d'une ou plusieurs de mes applications ou projets.
+
+Voici les exigences :
+
+🧩 1. Fonctionnalités principales à inclure :
+A. Espace de gestion de branding :
+Enregistrement et modification des éléments de marque :
+
+Nom du projet
+
+Slogan / tagline
+
+Logo (upload et preview)
+
+Charte de couleurs (codes hexadécimaux, nom de chaque couleur, usage recommandé)
+
+Typographie principale et secondaire (nom de la police, style, lien Google Fonts si disponible)
+
+Icônes et visuels associés
+
+Ton de voix et lignes éditoriales
+
+B. Génération automatique :
+Générer des fichiers de configuration CSS/SCSS contenant toutes les variables de style
+
+Générer un fichier README.md documentant la charte graphique
+
+Générer une preview interactive de la charte (style guide live)
+
+C. Authentification :
+Interface de connexion/inscription sécurisée (JWT ou autre système moderne)
+
+Système de rôles (admin, contributeur, viewer)
+
+Page de profil utilisateur
+
+D. Dashboard :
+Liste des projets avec possibilité de création, duplication, archivage
+
+Filtres et recherche
+
+Gestion d’équipe (inviter des membres à collaborer sur un branding)
+
+E. Export :
+Export en formats : PDF, JSON, CSS, SCSS, FIGMA tokens (si possible)
+
+Possibilité de synchronisation avec Figma, Notion, ou Google Drive
+
+🎨 2. Design :
+Utilise Material Design (Google CSS framework) pour toute l'interface.
+
+L’interface doit être moderne, minimaliste et responsive.
+
+Chaque composant doit suivre les principes UX/UI de Google.
+
+🛠️ 3. Technologies recommandées :
+Frontend : React.js + Tailwind (optionnel), ou pure Material UI
+
+Backend : Node.js (Express) ou Python (FastAPI)
+
+Base de données : MongoDB ou PostgreSQL
+
+Authentification : JWT ou Auth0
+
+API RESTful documentée avec Swagger
+
+🧪 4. Vérification qualité :
+Vérifie et corrige tous les bugs potentiels
+
+Écrit des tests unitaires et d’intégration pour toutes les fonctions critiques
+
+Assure une validation front-end (formulaires, uploads, champs obligatoires)
+
+Ajoute des messages d'erreur clairs et UX-friendly
+
+📦 5. Bonus (optionnel mais utile) :
+Générateur de moodboard à partir des couleurs/images/logo
+
+Intégration d’une API d’IA qui propose des améliorations de branding
+
+Historique des modifications
+
+Mode sombre / clair
+
+Rends le code bien structuré, commenté et prêt à déployer. Fournis les instructions d’installation et les commandes pour exécuter en local.
