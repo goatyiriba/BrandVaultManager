@@ -1,5 +1,6 @@
 import { useParams } from "wouter";
 import { useQuery } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 import { ProjectWithDetails } from "@shared/schema";
 import AppHeader from "@/components/app-header";
 import BrandEditor from "@/components/brand-editor";
@@ -10,24 +11,20 @@ import { Loader2 } from "lucide-react";
 export default function ProjectEditor() {
   const { id } = useParams();
   const { user } = useAuth();
-  
-  const isNewProject = id === "new";
-  
-  const { data: project, isLoading, error } = useQuery<ProjectWithDetails>({
-    queryKey: ["/api/projects", id],
-    enabled: !!id && !isNewProject,
-  });
 
-  if (isNewProject) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        <AppHeader user={user} />
-        <div className="p-6 max-w-6xl mx-auto">
-          <BrandEditor />
-        </div>
-      </div>
-    );
-  }
+  const {
+    data: project,
+    isLoading,
+    error,
+  } = useQuery<ProjectWithDetails>({
+    queryKey: ["/api/projects", id],
+    queryFn: async () => {
+      const res = await apiRequest("GET", `/api/projects/${id}`);
+      if (!res.ok) throw new Error("Failed to load project");
+      return (await res.json()) as ProjectWithDetails;
+    },
+    enabled: !!id,
+  });
 
   if (isLoading) {
     return (

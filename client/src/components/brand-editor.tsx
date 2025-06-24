@@ -50,8 +50,8 @@ export default function BrandEditor({ project }: BrandEditorProps) {
 
   const createProjectMutation = useMutation({
     mutationFn: async (data: FormData) => {
-      console.log("Creating project with data:", data);
       const res = await apiRequest("POST", "/api/projects", data);
+      if (!res.ok) throw new Error("Failed to create project");
       return await res.json();
     },
     onSuccess: (newProject) => {
@@ -75,6 +75,7 @@ export default function BrandEditor({ project }: BrandEditorProps) {
   const updateProjectMutation = useMutation({
     mutationFn: async (data: FormData) => {
       const res = await apiRequest("PUT", `/api/projects/${project!.id}`, data);
+      if (!res.ok) throw new Error("Failed to update project");
       return await res.json();
     },
     onSuccess: () => {
@@ -112,9 +113,10 @@ export default function BrandEditor({ project }: BrandEditorProps) {
 
   const handleExport = async (format: string) => {
     if (!project) return;
-    
+
     try {
       const res = await apiRequest("GET", `/api/projects/${project.id}/export/${format}`);
+      if (!res.ok) throw new Error("Export failed");
       const blob = await res.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -129,10 +131,10 @@ export default function BrandEditor({ project }: BrandEditorProps) {
         title: "Export successful",
         description: `Brand guidelines exported as ${format.toUpperCase()}`,
       });
-    } catch (error) {
+    } catch (error: any) {
       toast({
         title: "Export failed",
-        description: "Failed to export brand guidelines",
+        description: error.message || "Failed to export brand guidelines",
         variant: "destructive",
       });
     }
