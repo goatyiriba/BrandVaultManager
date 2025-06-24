@@ -15,6 +15,7 @@ function Router() {
   return (
     <Switch>
       <ProtectedRoute path="/" component={Dashboard} />
+      <ProtectedRoute path="/projects/new" component={ProjectEditor} />
       <ProtectedRoute path="/projects/:id" component={ProjectEditor} />
       <Route path="/auth" component={AuthPage} />
       <Route component={NotFound} />

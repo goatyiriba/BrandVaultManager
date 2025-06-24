@@ -11,12 +11,14 @@ export default function ProjectEditor() {
   const { id } = useParams();
   const { user } = useAuth();
   
+  const isNewProject = id === "new";
+  
   const { data: project, isLoading, error } = useQuery<ProjectWithDetails>({
     queryKey: ["/api/projects", id],
-    enabled: !!id && id !== "new",
+    enabled: !!id && !isNewProject,
   });
 
-  if (id === "new") {
+  if (isNewProject) {
     return (
       <div className="min-h-screen bg-gray-50">
         <AppHeader user={user} />

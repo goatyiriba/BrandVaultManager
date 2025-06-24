@@ -100,17 +100,22 @@ export function registerRoutes(app: Express): Server {
 
   app.post("/api/projects", requireAuth, async (req, res) => {
     try {
+      console.log("Creating project with data:", req.body);
+      console.log("User:", req.user);
+      
       const validatedData = insertProjectSchema.parse(req.body);
       const project = await storage.createProject({
         ...validatedData,
         userId: req.user!.id
       });
+      
+      console.log("Project created:", project);
       res.status(201).json(project);
     } catch (error) {
+      console.error("Error creating project:", error);
       if (error instanceof z.ZodError) {
         return res.status(400).json({ message: "Validation error", errors: error.errors });
       }
-      console.error("Error creating project:", error);
       res.status(500).json({ message: "Failed to create project" });
     }
   });

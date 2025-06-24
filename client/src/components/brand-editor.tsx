@@ -50,6 +50,7 @@ export default function BrandEditor({ project }: BrandEditorProps) {
 
   const createProjectMutation = useMutation({
     mutationFn: async (data: FormData) => {
+      console.log("Creating project with data:", data);
       const res = await apiRequest("POST", "/api/projects", data);
       return await res.json();
     },
@@ -61,10 +62,11 @@ export default function BrandEditor({ project }: BrandEditorProps) {
       });
       setLocation(`/projects/${newProject.id}`);
     },
-    onError: (error) => {
+    onError: (error: any) => {
+      console.error("Create project error:", error);
       toast({
-        title: "Error",
-        description: error.message,
+        title: "Error creating project",
+        description: error.message || "Failed to create project",
         variant: "destructive",
       });
     },
@@ -93,10 +95,14 @@ export default function BrandEditor({ project }: BrandEditorProps) {
   });
 
   const onSubmit = async (data: FormData) => {
-    if (isEditing) {
-      await updateProjectMutation.mutateAsync(data);
-    } else {
-      await createProjectMutation.mutateAsync(data);
+    try {
+      if (isEditing) {
+        await updateProjectMutation.mutateAsync(data);
+      } else {
+        await createProjectMutation.mutateAsync(data);
+      }
+    } catch (error) {
+      console.error("Submit error:", error);
     }
   };
 
@@ -144,7 +150,11 @@ export default function BrandEditor({ project }: BrandEditorProps) {
               Cancel
             </Button>
             <Button 
-              onClick={form.handleSubmit(onSubmit)}
+              type="button"
+              onClick={() => {
+                console.log("Form values:", form.getValues());
+                form.handleSubmit(onSubmit)();
+              }}
               disabled={createProjectMutation.isPending || updateProjectMutation.isPending}
               className="bg-primary hover:bg-primary/90"
             >
