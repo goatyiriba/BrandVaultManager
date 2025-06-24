@@ -107,7 +107,7 @@ export default function BrandEditor({ project }: BrandEditorProps) {
   };
 
   const handleCancel = () => {
-    setLocation("/");
+    setLocation("/dashboard");
   };
 
   const handleExport = async (format: string) => {
