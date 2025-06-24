@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Project } from "@shared/schema";
-import { Plus, Download, Users, FolderSync, Folder, Clock } from "lucide-react";
+import { Plus, Folder, Clock } from "lucide-react";
 import { Link } from "wouter";
 import { formatDistanceToNow } from "date-fns";
 
@@ -70,34 +70,7 @@ export default function Sidebar({ projects, onCreateProject }: SidebarProps) {
           </div>
         </div>
         
-        <div>
-          <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-3">
-            Quick Actions
-          </h3>
-          <div className="space-y-2">
-            <Button 
-              variant="ghost" 
-              className="w-full justify-start p-3 h-auto"
-            >
-              <Download className="w-4 h-4 mr-3 text-gray-400" />
-              <span className="text-gray-700">Export All</span>
-            </Button>
-            <Button 
-              variant="ghost" 
-              className="w-full justify-start p-3 h-auto"
-            >
-              <Users className="w-4 h-4 mr-3 text-gray-400" />
-              <span className="text-gray-700">Team Settings</span>
-            </Button>
-            <Button 
-              variant="ghost" 
-              className="w-full justify-start p-3 h-auto"
-            >
-              <FolderSync className="w-4 h-4 mr-3 text-gray-400" />
-              <span className="text-gray-700">FolderSync Figma</span>
-            </Button>
-          </div>
-        </div>
+
       </div>
     </aside>
   );

@@ -21,9 +21,6 @@ export default function AppHeader({ user }: AppHeaderProps) {
 
   const navigation = [
     { name: "Dashboard", href: "/", active: location === "/" },
-    { name: "Projects", href: "/projects", active: location.startsWith("/projects") },
-    { name: "Team", href: "/team", active: location === "/team" },
-    { name: "Export", href: "/export", active: location === "/export" },
   ];
 
   const handleLogout = () => {
@@ -44,13 +41,11 @@ export default function AppHeader({ user }: AppHeaderProps) {
             
             <nav className="hidden md:flex space-x-6">
               {navigation.map((item) => (
-                <Link key={item.name} href={item.href}>
-                  <a className={`font-medium transition-colors ${
-                    item.active ? "text-primary" : "text-gray-500 hover:text-gray-700"
-                  }`}>
-                    {item.name}
-                  </a>
-                </Link>
+                <span key={item.name} className={`font-medium transition-colors ${
+                  item.active ? "text-primary" : "text-gray-500"
+                }`}>
+                  {item.name}
+                </span>
               ))}
             </nav>
           </div>

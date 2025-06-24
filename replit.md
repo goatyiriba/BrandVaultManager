@@ -100,7 +100,10 @@ BrandVault is a full-stack web application for managing brand identity assets in
 ## Changelog
 - June 24, 2025. Initial setup
 - June 24, 2025. Added error handling for unhandled promise rejections
+- June 24, 2025. Simplified navigation (removed Team/Export), prepared for Vercel deployment
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Focus on dashboard and project creation only - removed team management and export features.
+Target deployment platform: Vercel.

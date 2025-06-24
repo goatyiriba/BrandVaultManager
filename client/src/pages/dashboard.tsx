@@ -6,7 +6,7 @@ import Sidebar from "@/components/sidebar";
 import ProjectCard from "@/components/project-card";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Plus, Folder, Palette, Users, Download, Search, Filter } from "lucide-react";
+import { Plus, Folder, Palette, Search, Filter } from "lucide-react";
 import { useState } from "react";
 import { useLocation } from "wouter";
 
@@ -22,8 +22,6 @@ export default function Dashboard() {
   const stats = {
     totalProjects: projects?.length || 0,
     activeBrands: projects?.length || 0,
-    teamMembers: 5,
-    exports: 34
   };
 
   const handleCreateProject = () => {
@@ -60,7 +58,7 @@ export default function Dashboard() {
             </div>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <Card className="shadow-material">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
@@ -88,34 +86,6 @@ export default function Dashboard() {
                   </div>
                 </CardContent>
               </Card>
-              
-              <Card className="shadow-material">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-500">Team Members</p>
-                      <p className="text-3xl font-bold text-gray-900">{stats.teamMembers}</p>
-                    </div>
-                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                      <Users className="w-6 h-6 text-orange-600" />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card className="shadow-material">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-gray-500">Exports This Month</p>
-                      <p className="text-3xl font-bold text-gray-900">{stats.exports}</p>
-                    </div>
-                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <Download className="w-6 h-6 text-purple-600" />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
 
@@ -124,7 +94,6 @@ export default function Dashboard() {
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-gray-900">Your Projects</h2>
               <div className="flex space-x-3">
-                <Button variant="outline">View All</Button>
                 <Button onClick={handleCreateProject} className="bg-primary hover:bg-primary/90">
                   Create Project
                 </Button>
