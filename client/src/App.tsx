@@ -9,6 +9,7 @@ import Dashboard from "@/pages/dashboard";
 import AuthPage from "@/pages/auth-page";
 import ProjectEditor from "@/pages/project-editor";
 import NotFound from "@/pages/not-found";
+import { useEffect } from "react";
 
 function Router() {
   return (
@@ -22,6 +23,25 @@ function Router() {
 }
 
 function App() {
+  useEffect(() => {
+    // Add global error handlers
+    const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
+      console.error('Unhandled promise rejection:', event.reason);
+    };
+
+    const handleError = (event: ErrorEvent) => {
+      console.error('Global error:', event.error);
+    };
+
+    window.addEventListener('unhandledrejection', handleUnhandledRejection);
+    window.addEventListener('error', handleError);
+
+    return () => {
+      window.removeEventListener('unhandledrejection', handleUnhandledRejection);
+      window.removeEventListener('error', handleError);
+    };
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>

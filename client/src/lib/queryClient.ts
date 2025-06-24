@@ -12,15 +12,28 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
-  const res = await fetch(url, {
-    method,
-    headers: data ? { "Content-Type": "application/json" } : {},
-    body: data ? JSON.stringify(data) : undefined,
-    credentials: "include",
-  });
+  try {
+    const headers: Record<string, string> = {};
+    
+    if (data instanceof FormData) {
+      // Don't set Content-Type for FormData, let the browser set it
+    } else if (data) {
+      headers["Content-Type"] = "application/json";
+    }
 
-  await throwIfResNotOk(res);
-  return res;
+    const res = await fetch(url, {
+      method,
+      headers,
+      body: data instanceof FormData ? data : data ? JSON.stringify(data) : undefined,
+      credentials: "include",
+    });
+
+    await throwIfResNotOk(res);
+    return res;
+  } catch (error) {
+    console.error("API request error:", error);
+    throw error;
+  }
 }
 
 type UnauthorizedBehavior = "returnNull" | "throw";

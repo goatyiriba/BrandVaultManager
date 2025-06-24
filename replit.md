@@ -99,6 +99,7 @@ BrandVault is a full-stack web application for managing brand identity assets in
 
 ## Changelog
 - June 24, 2025. Initial setup
+- June 24, 2025. Added error handling for unhandled promise rejections
 
 ## User Preferences
 

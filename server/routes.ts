@@ -40,10 +40,15 @@ const upload = multer({
 });
 
 function requireAuth(req: Request, res: Response, next: NextFunction) {
-  if (!req.isAuthenticated()) {
-    return res.status(401).json({ message: "Authentication required" });
+  try {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Authentication required" });
+    }
+    next();
+  } catch (error) {
+    console.error("Auth middleware error:", error);
+    res.status(500).json({ message: "Authentication error" });
   }
-  next();
 }
 
 export function registerRoutes(app: Express): Server {
