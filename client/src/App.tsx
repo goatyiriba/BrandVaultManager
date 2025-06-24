@@ -8,13 +8,15 @@ import { ProtectedRoute } from "./lib/protected-route";
 import Dashboard from "@/pages/dashboard";
 import AuthPage from "@/pages/auth-page";
 import ProjectEditor from "@/pages/project-editor";
+import LandingPage from "@/pages/landing-page";
 import NotFound from "@/pages/not-found";
 import { useEffect } from "react";
 
 function Router() {
   return (
     <Switch>
-      <ProtectedRoute path="/" component={Dashboard} />
+      <Route path="/" component={LandingPage} />
+      <ProtectedRoute path="/dashboard" component={Dashboard} />
       <ProtectedRoute path="/projects/new" component={ProjectEditor} />
       <ProtectedRoute path="/projects/:id" component={ProjectEditor} />
       <Route path="/auth" component={AuthPage} />
