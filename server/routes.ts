@@ -44,7 +44,12 @@ const upload = multer({
 
 function requireAuth(req: Request, res: Response, next: NextFunction) {
   try {
-    if (!req.isAuthenticated()) {
+    console.log("Auth check - isAuthenticated:", req.isAuthenticated?.());
+    console.log("Auth check - user:", req.user);
+    console.log("Auth check - session:", req.session);
+    
+    if (!req.isAuthenticated || !req.isAuthenticated()) {
+      console.log("Authentication failed");
       return res.status(401).json({ message: "Authentication required" });
     }
     next();
