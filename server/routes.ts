@@ -66,6 +66,11 @@ export function registerRoutes(app: Express): Server {
   // Serve uploaded files
   app.use('/uploads', express.static(uploadDir));
 
+  // Redirect the site root to the auth page
+  app.get('/', (_req, res) => {
+    res.redirect('/auth');
+  });
+
   // Project routes
   app.get("/api/projects", requireAuth, async (req, res) => {
     try {
